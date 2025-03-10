@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: decidim-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/certs:/etc/nginx/certs
+      - ./public:/app/public
+    depends_on:
+      - decidim
+    networks:
+      - decidim-network
+
+  decidim:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: decidim
+    restart: unless-stopped
+    env_file: 
+      - .env
+      # Ajoutez d'autres variables d'environnement nécessaires
+    volumes:
+      - ./app/packs/stylesheets/decidim/:/code/app/packs/stylesheets/decidim/
+      - ./app/packs/fonts/luciole/:/code/app/packs/fonts/luciole/
+      - ./app/views/layouts/decidim/_head_extra.html.erb:/code/app/views/layouts/decidim/_head_extra.html.erb
+      - ./app/views/layouts/decidim/admin/_application.html.erb:/code/app/views/layouts/decidim/admin/_application.html.erb
+      - ./storage:/code/storage
+      - ./app/assets:/code/app/assets
+      - ./app/overrides:/code/app/overrides
+      - ./config/locales:/code/config/locales
+      - ./config/initializers/decidim.rb:/code/config/initializers/decidim.rb
+      - ./app/packs/entrypoints/:/code/app/packs/entrypoints/
+      - ./public/Newsletter.png:/code/public/Newsletter.png
+      - ./config/environments/production.rb:/code/config/environments/production.rb
+      - ./config/initializers/devise.rb:/code/config/initializers/devise.rb
+      - ./app/views/layouts/decidim/mailer.html.erb:/code/app/views/layouts/decidim/mailer.html.erb
+    expose:
+      - "3000" # Port interne utilisé par Puma
+    depends_on:
+      - db
+      - redis
+    networks:
+      - decidim-network
+    #command: bash -c "rm -f /code/tmp/pids/server.pid && bundle exec rails server -b 0.0.0.0"
+
+  db:
+    image: postgres:13
+    container_name: decidim-db
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - decidim-network
+
+  redis:
+    image: redis:6
+    container_name: decidim-redis
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    networks:
+      - decidim-network
+
+networks:
+  decidim-network:
+    driver: bridge
+
+volumes:
+  db-data:
+  redis-data:
+  storage:
+    driver: local

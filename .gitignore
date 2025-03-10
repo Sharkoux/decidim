@@ -1,0 +1,6 @@
+.env
+storage/
+log/
+tmp/
+node_modules/
+nginx/certs/

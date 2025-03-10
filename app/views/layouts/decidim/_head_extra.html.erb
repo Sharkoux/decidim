@@ -1,0 +1,241 @@
+<style type="text/css">
+ 
+ @font-face {
+    font-family: 'Luciole';
+    src: asset_url('luciole/Luciole-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  body {
+    font-family: 'Luciole', sans-serif!important;
+  }
+
+  header {
+	background-color: white;
+
+}
+
+main {
+  min-height: 800px;
+}
+
+ header .main-bar {
+ 
+   padding-bottom: 0px!important;
+}
+.main-bar__logo a{
+	position: absolute;
+	top: 40%;
+	z-index: 50;
+} 
+  #html-block-html {
+        background-color: white;
+        margin: 0px;
+	max-width: 100%;
+	font-weight: bold;
+
+	 
+  }
+  header .main-bar__links-desktop__item:hover {
+	background-color: transparent;
+ }
+  header .main-bar__links-desktop__item {
+	font-weight:bold;
+	
+}
+ 
+ .main-footer {
+	background-color: rgb(245, 241, 247)!important;
+  
+}
+
+.main-footer a {
+  color: rgb(2, 2, 3);
+}
+
+.main-footer p {
+  color: rgb(2, 2, 3);
+}
+
+.main-footer h2 {
+  color: rgb(2, 2, 3);
+}
+
+ .main-bar__logo a img {
+	height: 140px;
+	max-height: none;
+}
+
+#content header {
+ background-color: transparent!important;
+}
+
+.hero__container {
+  background-size: contain;
+  background-image: var(--hero-image);
+}
+
+.hero__title {
+  color: rgb(75, 52, 112);
+  max-width: 500px;
+  font-size: 28px;
+  line-height: 35px;
+  
+}
+
+.hero {
+  gap: 1rem;
+}
+
+.text_Proposition {
+   display: flex;
+   margin: auto;
+   justify-content: center;
+   padding-top: 20px;
+}
+
+.profile__activity .filter-container #dropdown-menu-resource li:nth-child(6) {
+  display: none;
+}
+
+
+#hero-cta span {
+  font-size: 24px; 
+}
+
+#dropdown-menu-account li:nth-child(4) {
+  display: none!important;
+}
+
+body:not(:has(#html-block-html)) .main-bar__container {
+	margin-bottom: 96px;
+}
+
+@media (max-width: 1024px) {
+    #dropdown-menu-main-mobile {
+      margin-top: 96px;
+    }
+    body:not(:has(#html-block-html)) #dropdown-menu-main-mobile {
+	    margin-top: 150px!important;
+} 
+.hero__container {
+  background-size: cover;
+}
+
+
+}
+
+@media (max-width: 768px) {
+   #dropdown-menu-main-mobile {
+    margin-top: 64px;
+  }
+
+  .main-bar__logo a {
+    position: static;
+  }
+  body:not(:has(#html-block-html)) .main-bar__container {
+	margin-bottom: 48px!important;
+}
+body:not(:has(#html-block-html)) #dropdown-menu-main-mobile {
+  margin-top: 104px!important;
+} 
+
+}
+
+@media (max-width: 425px) {
+  .hero__title {
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+  }
+}
+
+
+.help-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.label-required {
+  font-size: 24px;
+}
+
+.form-error {
+  font-size: 20px;
+  font-weight: bold;
+  color: red;
+}
+
+#form-search_topbar {
+  border: 2px solid;
+  border-color: rgb(75,52,112);	
+  background-color: white;
+}
+
+#input-search::placeholder {
+  color: rgb(75,52,112);
+}
+
+#form-search_topbar button svg {
+  fill: rgb(75,52,112);
+}
+
+.filter-search input {
+  border: 2px solid!important;
+  border-color: rgb(75,52,112)!important;
+  background-color: white!important;
+}
+
+.filter-search input::placeholder {
+  color: rgb(75,52,112)!important;
+}
+
+.filter-search button svg {
+  fill: rgb(75, 52, 112);
+}
+
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(() => {
+    // Ici retirer les attributs data-open vides
+    document.querySelectorAll('[data-open]').forEach((el) => {
+      const val = el.getAttribute('data-open');
+      if (!val) {
+        el.removeAttribute('data-open');
+      }
+    });
+
+    const stepButtons = document.querySelectorAll('.participatory-space__metadata-modal__step');
+    stepButtons.forEach((button) => {
+      button.addEventListener('click', function() {
+        const panelId = this.getAttribute('aria-controls');
+        const panel = document.getElementById(panelId);
+        if (panel) {
+          panel.focus();
+        }
+      });
+    });
+  }, 500); // demi-seconde par exemple
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Sélectionne tous les <h1> ayant les classes "title-decorator" et "my-12"
+  if(window.location.pathname === '/admin/officialization') {
+  const headers = document.querySelectorAll('h1.title-decorator.my-12');
+  
+  headers.forEach(header => {
+    // Vérifie si le texte de l'élément correspond exactement
+    if (header.textContent.trim() === "La page que vous cherchez est introuvable") {
+      // Ici, vous pouvez effectuer une action, par exemple rediriger l'utilisateur
+      window.location.href = '/';
+    }
+  });
+}
+});
+
+ 
+</script>

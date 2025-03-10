@@ -1,0 +1,17 @@
+fr:
+  decidim:
+    last_activity:
+      name: "Dernière Actualité"
+      title: "Dernière Actualité"
+    last_activities:
+      all: "Tous les types d'actualité"
+      index:
+        last_activity: "Dernière Actualité"
+      name: "Dernières actualités"
+      no_activities_warning: Il n'y a aucune actualité de ce type.
+    profiles:
+      show:
+        activity: "Actualité"
+    statistics:
+      users_count: "Membres"
+      participants_count: "Membres ayant participé"

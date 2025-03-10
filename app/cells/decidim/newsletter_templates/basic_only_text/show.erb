@@ -1,0 +1,64 @@
+<table class="main container">
+  <!-- Nouveau header avec image -->
+  <tr>
+    <td>
+      <table class="row collapse">
+        <tr>
+          <th class="small-12 columns">
+            <%= image_tag 'https://participons-au-cncph.fr/Newsletter.png', alt: "Bandeau newsletter", style: "width:100%; display:block;" %>
+          </th>
+          <th class="expander"></th>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- Espacement sous le header -->
+  <tr>
+    <td>
+      <table class="spacer">
+        <tbody>
+          <tr>
+            <td height="40px" style="font-size:40px;line-height:40px;"> </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Contenu principal du mail -->
+      <table class="row content">
+        <tr>
+          <th class="small-12 first columns">
+            <%= body %>
+          </th>
+          <th class="expander"></th>
+        </tr>
+      </table>
+
+      <!-- Optionnel : Autres contenus intermédiaires -->
+      <table class="row">
+        <tr>
+          <th class="small-12 first columns">
+            <!-- Place ici d'autres éléments si besoin -->
+          </th>
+          <th class="expander"></th>
+        </tr>
+      </table>
+
+      <!-- Pied de page du mail -->
+      <table class="row">
+        <tr>
+          <th class="expander"></th>
+          <th class="small-12 first columns cityhall-bar">
+            <div class="decidim-logo" style="float: right; text-align: right; padding-right: 16px">
+              <% if custom_url_for_mail_root.present? %>
+                <%= link_to organization.name.html_safe, custom_url_for_mail_root %>
+              <% else %>
+                <%= link_to organization.name.html_safe, decidim.root_url(host: organization.host) %>
+              <% end %>
+            </div>
+          </th>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
